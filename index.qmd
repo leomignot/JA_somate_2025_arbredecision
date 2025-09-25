@@ -1207,7 +1207,8 @@ print(foret$importance)
 varImpPlot(foret, type = 1, main = "Importance - Précision moyenne")
 varImpPlot(foret, type = 2, main = "Importance - Indice de Gini")
 
-# 3. Erreur Out-of-Bag (OOB)
+# 3. Erreur Out-of-Bag (OOB) (estimation de l'erreur de prédiction)
+# c'est un indicateur de performance de notre forêt aléatoire, une sorte de validation croisé mais calculé sur l'apprentissage sasn un jeux de données extérieur. 
 oob_error <- foret$err.rate[nrow(foret$err.rate), "OOB"]
 print(paste("\nErreur OOB finale:", round(oob_error, 4)))
 

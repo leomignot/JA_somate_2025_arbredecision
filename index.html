@@ -1357,65 +1357,66 @@ Arbres de décision : Une approche statistique pour dépasser la dichotomie quan
 <span id="cb13-37"><a href=""></a><span class="fu">varImpPlot</span>(foret, <span class="at">type =</span> <span class="dv">1</span>, <span class="at">main =</span> <span class="st">"Importance - Précision moyenne"</span>)</span>
 <span id="cb13-38"><a href=""></a><span class="fu">varImpPlot</span>(foret, <span class="at">type =</span> <span class="dv">2</span>, <span class="at">main =</span> <span class="st">"Importance - Indice de Gini"</span>)</span>
 <span id="cb13-39"><a href=""></a></span>
-<span id="cb13-40"><a href=""></a><span class="co"># 3. Erreur Out-of-Bag (OOB)</span></span>
-<span id="cb13-41"><a href=""></a>oob_error <span class="ot">&lt;-</span> foret<span class="sc">$</span>err.rate[<span class="fu">nrow</span>(foret<span class="sc">$</span>err.rate), <span class="st">"OOB"</span>]</span>
-<span id="cb13-42"><a href=""></a><span class="fu">print</span>(<span class="fu">paste</span>(<span class="st">"</span><span class="sc">\n</span><span class="st">Erreur OOB finale:"</span>, <span class="fu">round</span>(oob_error, <span class="dv">4</span>)))</span>
-<span id="cb13-43"><a href=""></a></span>
-<span id="cb13-44"><a href=""></a><span class="co"># OPTIMISATION DE LA FORÊT ALÉATOIRE</span></span>
-<span id="cb13-45"><a href=""></a><span class="co"># ============================================================================</span></span>
-<span id="cb13-46"><a href=""></a></span>
-<span id="cb13-47"><a href=""></a><span class="co"># Recherche du mtry optimal</span></span>
-<span id="cb13-48"><a href=""></a></span>
-<span id="cb13-49"><a href=""></a>mtry_optimal <span class="ot">&lt;-</span> <span class="fu">tuneRF</span>(titanic_complet[, <span class="fu">c</span>(<span class="st">"Pclass"</span>, <span class="st">"Sex"</span>, <span class="st">"Age"</span>, <span class="st">"SibSp"</span>, <span class="st">"Parch"</span>, <span class="st">"Fare"</span>, <span class="st">"Embarked"</span>)],</span>
-<span id="cb13-50"><a href=""></a>                       titanic_complet<span class="sc">$</span>Survived,</span>
-<span id="cb13-51"><a href=""></a>                       <span class="at">stepFactor =</span> <span class="fl">1.5</span>,</span>
-<span id="cb13-52"><a href=""></a>                       <span class="at">improve =</span> <span class="fl">0.01</span>,</span>
-<span id="cb13-53"><a href=""></a>                       <span class="at">ntree =</span> <span class="dv">300</span>,</span>
-<span id="cb13-54"><a href=""></a>                       <span class="at">doBest =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb13-55"><a href=""></a>                       <span class="at">plot =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb13-56"><a href=""></a>                       <span class="at">main =</span> <span class="st">"Optimisation du paramètre mtry"</span>)</span>
-<span id="cb13-57"><a href=""></a></span>
-<span id="cb13-58"><a href=""></a><span class="co"># Forêt optimisée</span></span>
-<span id="cb13-59"><a href=""></a>foret_optimisee <span class="ot">&lt;-</span> <span class="fu">randomForest</span>(Survived <span class="sc">~</span> Pclass <span class="sc">+</span> Sex <span class="sc">+</span> Age <span class="sc">+</span> SibSp <span class="sc">+</span> Parch <span class="sc">+</span> Fare <span class="sc">+</span> Embarked,</span>
-<span id="cb13-60"><a href=""></a>                               <span class="at">data =</span> titanic_complet,</span>
-<span id="cb13-61"><a href=""></a>                               <span class="at">ntree =</span> <span class="dv">500</span>,</span>
-<span id="cb13-62"><a href=""></a>                               <span class="at">mtry =</span> mtry_optimal[<span class="fu">which.min</span>(mtry_optimal[,<span class="dv">2</span>]), <span class="dv">1</span>],</span>
-<span id="cb13-63"><a href=""></a>                               <span class="at">importance =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb13-64"><a href=""></a></span>
-<span id="cb13-65"><a href=""></a><span class="fu">print</span>(<span class="st">"Forêt optimisée"</span>)</span>
-<span id="cb13-66"><a href=""></a><span class="fu">print</span>(foret_optimisee)</span>
-<span id="cb13-67"><a href=""></a></span>
-<span id="cb13-68"><a href=""></a><span class="co"># Prédictions avec la forêt optimisée</span></span>
-<span id="cb13-69"><a href=""></a>pred_foret_opt <span class="ot">&lt;-</span> <span class="fu">predict</span>(foret_optimisee, test_data, <span class="at">type =</span> <span class="st">"class"</span>)</span>
-<span id="cb13-70"><a href=""></a>conf_matrix_foret_opt <span class="ot">&lt;-</span> <span class="fu">confusionMatrix</span>(pred_foret_opt, test_data<span class="sc">$</span>Survived)</span>
-<span id="cb13-71"><a href=""></a></span>
+<span id="cb13-40"><a href=""></a><span class="co"># 3. Erreur Out-of-Bag (OOB) (estimation de l'erreur de prédiction)</span></span>
+<span id="cb13-41"><a href=""></a><span class="co"># c'est un indicateur de performance de notre forêt aléatoire, une sorte de validation croisé mais calculé sur l'apprentissage sasn un jeux de données extérieur. </span></span>
+<span id="cb13-42"><a href=""></a>oob_error <span class="ot">&lt;-</span> foret<span class="sc">$</span>err.rate[<span class="fu">nrow</span>(foret<span class="sc">$</span>err.rate), <span class="st">"OOB"</span>]</span>
+<span id="cb13-43"><a href=""></a><span class="fu">print</span>(<span class="fu">paste</span>(<span class="st">"</span><span class="sc">\n</span><span class="st">Erreur OOB finale:"</span>, <span class="fu">round</span>(oob_error, <span class="dv">4</span>)))</span>
+<span id="cb13-44"><a href=""></a></span>
+<span id="cb13-45"><a href=""></a><span class="co"># OPTIMISATION DE LA FORÊT ALÉATOIRE</span></span>
+<span id="cb13-46"><a href=""></a><span class="co"># ============================================================================</span></span>
+<span id="cb13-47"><a href=""></a></span>
+<span id="cb13-48"><a href=""></a><span class="co"># Recherche du mtry optimal</span></span>
+<span id="cb13-49"><a href=""></a></span>
+<span id="cb13-50"><a href=""></a>mtry_optimal <span class="ot">&lt;-</span> <span class="fu">tuneRF</span>(titanic_complet[, <span class="fu">c</span>(<span class="st">"Pclass"</span>, <span class="st">"Sex"</span>, <span class="st">"Age"</span>, <span class="st">"SibSp"</span>, <span class="st">"Parch"</span>, <span class="st">"Fare"</span>, <span class="st">"Embarked"</span>)],</span>
+<span id="cb13-51"><a href=""></a>                       titanic_complet<span class="sc">$</span>Survived,</span>
+<span id="cb13-52"><a href=""></a>                       <span class="at">stepFactor =</span> <span class="fl">1.5</span>,</span>
+<span id="cb13-53"><a href=""></a>                       <span class="at">improve =</span> <span class="fl">0.01</span>,</span>
+<span id="cb13-54"><a href=""></a>                       <span class="at">ntree =</span> <span class="dv">300</span>,</span>
+<span id="cb13-55"><a href=""></a>                       <span class="at">doBest =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb13-56"><a href=""></a>                       <span class="at">plot =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb13-57"><a href=""></a>                       <span class="at">main =</span> <span class="st">"Optimisation du paramètre mtry"</span>)</span>
+<span id="cb13-58"><a href=""></a></span>
+<span id="cb13-59"><a href=""></a><span class="co"># Forêt optimisée</span></span>
+<span id="cb13-60"><a href=""></a>foret_optimisee <span class="ot">&lt;-</span> <span class="fu">randomForest</span>(Survived <span class="sc">~</span> Pclass <span class="sc">+</span> Sex <span class="sc">+</span> Age <span class="sc">+</span> SibSp <span class="sc">+</span> Parch <span class="sc">+</span> Fare <span class="sc">+</span> Embarked,</span>
+<span id="cb13-61"><a href=""></a>                               <span class="at">data =</span> titanic_complet,</span>
+<span id="cb13-62"><a href=""></a>                               <span class="at">ntree =</span> <span class="dv">500</span>,</span>
+<span id="cb13-63"><a href=""></a>                               <span class="at">mtry =</span> mtry_optimal[<span class="fu">which.min</span>(mtry_optimal[,<span class="dv">2</span>]), <span class="dv">1</span>],</span>
+<span id="cb13-64"><a href=""></a>                               <span class="at">importance =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb13-65"><a href=""></a></span>
+<span id="cb13-66"><a href=""></a><span class="fu">print</span>(<span class="st">"Forêt optimisée"</span>)</span>
+<span id="cb13-67"><a href=""></a><span class="fu">print</span>(foret_optimisee)</span>
+<span id="cb13-68"><a href=""></a></span>
+<span id="cb13-69"><a href=""></a><span class="co"># Prédictions avec la forêt optimisée</span></span>
+<span id="cb13-70"><a href=""></a>pred_foret_opt <span class="ot">&lt;-</span> <span class="fu">predict</span>(foret_optimisee, test_data, <span class="at">type =</span> <span class="st">"class"</span>)</span>
+<span id="cb13-71"><a href=""></a>conf_matrix_foret_opt <span class="ot">&lt;-</span> <span class="fu">confusionMatrix</span>(pred_foret_opt, test_data<span class="sc">$</span>Survived)</span>
 <span id="cb13-72"><a href=""></a></span>
-<span id="cb13-73"><a href=""></a><span class="do">#### Prédiction sur un nouveau jeux de donnée</span></span>
-<span id="cb13-74"><a href=""></a></span>
-<span id="cb13-75"><a href=""></a><span class="co">#Attention l'algorithme est très sensible, il faut que les nouvelles données aient exactement les même prédicteurs et que toutes les modalités des facteurs ayant entrainé le modèle soit aussi présentes dans le nouveau jeu de donnée.</span></span>
-<span id="cb13-76"><a href=""></a><span class="do">## Ainsi ce nouveau jeux de données utilisé ici à une dernière ligne factice mais avec la modalité "vide" pour la variable embarqueement, sans cette ligne impossible de réaliser la prédiction</span></span>
-<span id="cb13-77"><a href=""></a><span class="co"># En tout cas dasn le cadre de ce package</span></span>
-<span id="cb13-78"><a href=""></a></span>
-<span id="cb13-79"><a href=""></a><span class="co"># On situe le dossier dans lequel se trouve nos données</span></span>
-<span id="cb13-80"><a href=""></a>csv_path <span class="ot">&lt;-</span> <span class="fu">here</span>(<span class="st">"data"</span>, <span class="st">"titanic_predict2.csv"</span>)</span>
-<span id="cb13-81"><a href=""></a><span class="co"># Lecture du CSV dans un dataframe</span></span>
-<span id="cb13-82"><a href=""></a>titanic_predict2 <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(csv_path)</span>
-<span id="cb13-83"><a href=""></a></span>
-<span id="cb13-84"><a href=""></a>titanic_predict2 <span class="ot">&lt;-</span> titanic_predict2 <span class="sc">%&gt;%</span></span>
-<span id="cb13-85"><a href=""></a>  <span class="fu">mutate</span>(</span>
-<span id="cb13-86"><a href=""></a>    <span class="at">Pclass =</span> <span class="fu">factor</span>(Pclass),</span>
-<span id="cb13-87"><a href=""></a>    <span class="at">Sex =</span> <span class="fu">factor</span>(Sex),</span>
-<span id="cb13-88"><a href=""></a>    <span class="at">Embarked =</span> <span class="fu">factor</span>(Embarked)</span>
-<span id="cb13-89"><a href=""></a>  )</span>
-<span id="cb13-90"><a href=""></a></span>
-<span id="cb13-91"><a href=""></a>titanic <span class="ot">=</span> titanic_predict2 <span class="sc">%&gt;%</span> <span class="fu">select</span>(Pclass, Sex,Age,SibSp,Parch,Fare, Embarked)</span>
-<span id="cb13-92"><a href=""></a></span>
+<span id="cb13-73"><a href=""></a></span>
+<span id="cb13-74"><a href=""></a><span class="do">#### Prédiction sur un nouveau jeux de donnée</span></span>
+<span id="cb13-75"><a href=""></a></span>
+<span id="cb13-76"><a href=""></a><span class="co">#Attention l'algorithme est très sensible, il faut que les nouvelles données aient exactement les même prédicteurs et que toutes les modalités des facteurs ayant entrainé le modèle soit aussi présentes dans le nouveau jeu de donnée.</span></span>
+<span id="cb13-77"><a href=""></a><span class="do">## Ainsi ce nouveau jeux de données utilisé ici à une dernière ligne factice mais avec la modalité "vide" pour la variable embarqueement, sans cette ligne impossible de réaliser la prédiction</span></span>
+<span id="cb13-78"><a href=""></a><span class="co"># En tout cas dasn le cadre de ce package</span></span>
+<span id="cb13-79"><a href=""></a></span>
+<span id="cb13-80"><a href=""></a><span class="co"># On situe le dossier dans lequel se trouve nos données</span></span>
+<span id="cb13-81"><a href=""></a>csv_path <span class="ot">&lt;-</span> <span class="fu">here</span>(<span class="st">"data"</span>, <span class="st">"titanic_predict2.csv"</span>)</span>
+<span id="cb13-82"><a href=""></a><span class="co"># Lecture du CSV dans un dataframe</span></span>
+<span id="cb13-83"><a href=""></a>titanic_predict2 <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(csv_path)</span>
+<span id="cb13-84"><a href=""></a></span>
+<span id="cb13-85"><a href=""></a>titanic_predict2 <span class="ot">&lt;-</span> titanic_predict2 <span class="sc">%&gt;%</span></span>
+<span id="cb13-86"><a href=""></a>  <span class="fu">mutate</span>(</span>
+<span id="cb13-87"><a href=""></a>    <span class="at">Pclass =</span> <span class="fu">factor</span>(Pclass),</span>
+<span id="cb13-88"><a href=""></a>    <span class="at">Sex =</span> <span class="fu">factor</span>(Sex),</span>
+<span id="cb13-89"><a href=""></a>    <span class="at">Embarked =</span> <span class="fu">factor</span>(Embarked)</span>
+<span id="cb13-90"><a href=""></a>  )</span>
+<span id="cb13-91"><a href=""></a></span>
+<span id="cb13-92"><a href=""></a>titanic <span class="ot">=</span> titanic_predict2 <span class="sc">%&gt;%</span> <span class="fu">select</span>(Pclass, Sex,Age,SibSp,Parch,Fare, Embarked)</span>
 <span id="cb13-93"><a href=""></a></span>
-<span id="cb13-94"><a href=""></a><span class="co"># 1. PRÉDICTION DES CLASSES (0 = Décédé, 1 = Survivant)</span></span>
-<span id="cb13-95"><a href=""></a>predictions_classes <span class="ot">&lt;-</span> <span class="fu">predict</span>(foret, titanic, <span class="at">type =</span> <span class="st">"class"</span>)</span>
-<span id="cb13-96"><a href=""></a></span>
-<span id="cb13-97"><a href=""></a><span class="co"># 2. PRÉDICTION DES PROBABILITÉS</span></span>
-<span id="cb13-98"><a href=""></a>predictions_probabilities <span class="ot">&lt;-</span> <span class="fu">predict</span>(foret, titanic, <span class="at">type =</span> <span class="st">"prob"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb13-94"><a href=""></a></span>
+<span id="cb13-95"><a href=""></a><span class="co"># 1. PRÉDICTION DES CLASSES (0 = Décédé, 1 = Survivant)</span></span>
+<span id="cb13-96"><a href=""></a>predictions_classes <span class="ot">&lt;-</span> <span class="fu">predict</span>(foret, titanic, <span class="at">type =</span> <span class="st">"class"</span>)</span>
+<span id="cb13-97"><a href=""></a></span>
+<span id="cb13-98"><a href=""></a><span class="co"># 2. PRÉDICTION DES PROBABILITÉS</span></span>
+<span id="cb13-99"><a href=""></a>predictions_probabilities <span class="ot">&lt;-</span> <span class="fu">predict</span>(foret, titanic, <span class="at">type =</span> <span class="st">"prob"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
