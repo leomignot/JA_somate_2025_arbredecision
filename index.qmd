@@ -669,7 +669,7 @@ Critère 2 : Règle du 1-SE
 
 <p class="small" style="text-align: center;">
 
-Pour accéder aux données : [**https://rzine-reviews.github.io/documentation/**](https://rzine-reviews.github.io/documentation/) <br> A l'application clic-bouton : [**https://rzine-reviews.github.io/documentation/**](https://rzine-reviews.github.io/documentation/)
+Pour accéder aux données et au dépôt : [**https://github.com/LeCampionG/JA_somate_2025_arbredecision**](https://github.com/LeCampionG/JA_somate_2025_arbredecision) <br> A l'application clic-bouton : [**https://analytics.huma-num.fr/Gregoire.LeCampion/Arbre_de_decision/**](https://analytics.huma-num.fr/Gregoire.LeCampion/Arbre_de_decision/)
 
 </p>
 
