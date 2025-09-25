@@ -708,9 +708,9 @@ csv_path <- here("data", "titanic_data.csv")
 titanic_data <- read.csv(csv_path)
 
 # Nettoyage rapide
-titanic_data <- titanic_train %>%
+titanic_data <- titanic_data %>%
   mutate(
-    Survived = factor(Survived, labels = c("Non", "Oui")), # variable cible
+    Survived = factor(Survived, labels = c("Non", "Oui")),
     Pclass = factor(Pclass),
     Sex = factor(Sex),
     Embarked = factor(Embarked)

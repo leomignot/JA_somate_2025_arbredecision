@@ -920,9 +920,9 @@ Arbres de décision : Une approche statistique pour dépasser la dichotomie quan
 <span id="cb1-9"><a href=""></a>titanic_data <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(csv_path)</span>
 <span id="cb1-10"><a href=""></a></span>
 <span id="cb1-11"><a href=""></a><span class="co"># Nettoyage rapide</span></span>
-<span id="cb1-12"><a href=""></a>titanic_data <span class="ot">&lt;-</span> titanic_train <span class="sc">%&gt;%</span></span>
+<span id="cb1-12"><a href=""></a>titanic_data <span class="ot">&lt;-</span> titanic_data <span class="sc">%&gt;%</span></span>
 <span id="cb1-13"><a href=""></a>  <span class="fu">mutate</span>(</span>
-<span id="cb1-14"><a href=""></a>    <span class="at">Survived =</span> <span class="fu">factor</span>(Survived, <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"Non"</span>, <span class="st">"Oui"</span>)), <span class="co"># variable cible</span></span>
+<span id="cb1-14"><a href=""></a>    <span class="at">Survived =</span> <span class="fu">factor</span>(Survived, <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"Non"</span>, <span class="st">"Oui"</span>)),</span>
 <span id="cb1-15"><a href=""></a>    <span class="at">Pclass =</span> <span class="fu">factor</span>(Pclass),</span>
 <span id="cb1-16"><a href=""></a>    <span class="at">Sex =</span> <span class="fu">factor</span>(Sex),</span>
 <span id="cb1-17"><a href=""></a>    <span class="at">Embarked =</span> <span class="fu">factor</span>(Embarked)</span>
