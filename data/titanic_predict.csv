@@ -1,0 +1,22 @@
+PassengerId,Survived,Pclass,Name,Sex,Age,SibSp,Parch,Ticket,Fare,Cabin,Embarked
+1,,3,Leo Mignot,male,22,1,0,A/5 21171,7.25,,S
+2,,1,Julie Pierson,female,38,1,0,PC 17599,71.2833,C85,C
+3,,3,Viviane Le hay,female,26,0,0,STON/O2. 3101282,7.925,,S
+4,,1,Solenne Roux,female,35,1,0,113803,53.1,C123,S
+5,,3,Olivier Pissoat,male,35,0,0,373450,8.05,,S
+6,,3,François Ric,male,NA,0,0,330877,8.4583,,Q
+7,,1,Frédéric Le Blay,male,54,0,0,17463,51.8625,E46,S
+8,,3,Fabien Cerbelaud,male,2,3,1,349909,21.075,,S
+9,,3,Gaëlle Deletraz,female,27,0,2,347742,11.1333,,S
+10,,2,Dina Santos Araujo,female,14,1,0,237736,30.0708,,C
+11,,3,Delphine Montagne,female,4,1,1,PP 9549,16.7,G6,S
+12,,1,Céline Acary-Robert,female,58,0,0,113783,26.55,C103,S
+13,,3,Grégoire Le Campion,male,20,0,0,A/5. 2151,8.05,,S
+14,,3,Jacques Berque,male,39,1,5,347082,31.275,,Q
+15,,3,Claire Kersuzan,female,14,0,0,350406,7.8542,,S
+16,,2,Laure gayraud,female,55,0,0,248706,16,,S
+19,,3,Valérie Gosseaume,female,31,1,0,345763,18,,S
+20,,3,Aliette Roux,female,30,0,0,2649,7.225,,C
+21,,2,"Fynney, Mr. Joseph J",male,35,0,0,239865,26,,S
+22,,2,"Beesley, Mr. Lawrence",male,34,0,0,248698,13,D56,S
+23,,3,Kimberley Cloirec,female,15,0,0,330923,8.0292,,Q

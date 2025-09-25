@@ -1,0 +1,1271 @@
+---
+title: "Journées Annuelles So-MATE"
+subtitle: <img src="figure/chat.jpg" width="280" style="margin-bottom:0px;"/>
+author: "Arbres de décision : Une approche statistique pour dépasser la dichotomie quanti/quali<Br>"
+institute: |
+  Grégoire Le Campion - 02 octobre 2025
+  <br>
+  <img src="figure/logosomate.png" width="125" style="float:center"/>
+format:
+  revealjs:
+    theme: dark
+    navigation-mode: vertical
+    transition: convex
+    css: styles.css
+    chalkboard: true
+    pointer:
+      pointerSize: 18
+embed-ressources: true
+lightbox: true
+editor: visual
+---
+
+#  {data-background="figure/arbre.gif" data-background-size="300px"}
+
+<h2 style="text-align: center;">
+
+**Qu'est ce qu'un arbre de décision ?**
+
+</h2>
+
+<br> <br><br> <br><br> <br> <br> <br> <br> <br> <br> <br><span style="color:#4178bc;"> <br> <br>
+
+## Carte d'identité d'un arbre de décision
+
+::: {.fragment .fade-left}
+<p style="font-size:80%;margin-top:50px;">
+
+1- C'est une méthode relativement jeune, l'article de référence date de 1984 ([*L. Breiman et al. : Classification and Regression Trees. Wadsworth, 1984.*]{style="color:#4178bc;"}),
+
+</p>
+:::
+
+::: {.fragment .fade-left}
+<p style="font-size:80%;margin-top:50px;">
+
+2- qui appartient au champ des méthodes d'apprentissage supervisées.
+
+</p>
+:::
+
+::: {.fragment .fade-left}
+<p style="font-size:80%;margin-top:50px;">
+
+3- C'est un outil **graphique et analytique** permettant de **représenter visuellement** une succession de choix ou de tests à effectuer menant à différents résultats possibles,
+
+</p>
+:::
+
+::: {.fragment .fade-left}
+<p style="font-size:80%;margin-top:50px;">
+
+4 - qui vise à **prédire ou expliquer** les valeurs prisent par une variable, que vous aurez choisie, en fonction **d'un ensemble d'autres variables** que vous aurez sélectionnées.
+
+</p>
+:::
+
+::: {.fragment .fade-left}
+<p style="font-size:80%;margin-top:50px;">
+
+**Enfin, c'est un outil particulièrement intuitif car il mime notre façon naturelle de raisonner par questions successives.**
+
+</p>
+:::
+
+## Un outil visuel
+
+::: columns
+::: {.column width="50%"}
+::: {.fragment .fade-up}
+<p class="smallpcenter" style="margin-top:0px;">
+
+Ceci est un arbre de décision
+
+</p>
+
+::: r-stack
+<img src="figure/exemple1.png" width="400" style="margin-top:15px;margin-bottom:0px"/>
+:::
+:::
+
+::: {.fragment .fade-up}
+<p class="smallpcenter" style="margin-top:0px;">
+
+ça aussi...
+
+</p>
+
+::: r-stack
+<img src="figure/exemple3.png" width="400" style="margin-top:15px;margin-bottom:0px"/>
+:::
+:::
+:::
+
+::: {.column width="50%"}
+::: {.fragment .fade-up}
+<p class="smallpcenter" style="margin-top:0px;">
+
+Et aussi ça...
+
+</p>
+
+::: r-stack
+<img src="figure/exemple2.png" width="300" style="margin-top:15px;margin-bottom:0px"/>
+:::
+:::
+
+::: {.fragment .fade-up}
+<p class="smallpcenter" style="margin-top:0px;">
+
+Etc...
+
+</p>
+
+::: r-stack
+<img src="figure/exemple4.png" width="300" style="margin-top:15px;margin-bottom:0px"/>
+:::
+:::
+:::
+:::
+
+## De nombreux avantages...
+
+::: columns
+::: {.column width="50%"}
+::: {.fragment .fade-up}
+<p class="smallpcenter" style="margin-top:0px;">
+
+L'usage du multivarié en SHS c'est un peu ça...
+
+</p>
+
+::: r-stack
+<img src="figure/vague.gif" width="400" style="margin-top:15px;margin-bottom:0px"/>
+:::
+:::
+:::
+
+::: {.column width="50%"}
+::: {.fragment .fade-left}
+<p class="smallpcenter" style="margin-top:0px;">
+
+Alors qu'avec les arbres de décision :
+
+</p>
+:::
+
+::: {.fragment .fade-up}
+<p class="smallpcenter" style="margin-top:0px;">
+
+> -   Gestion efficace des valeurs manquantes
+> -   Peu sensible à la multicolinéarité
+> -   Résite bien aux outliers (fonctionne avec des seuils)
+> -   Peu gourmand en ressource
+> -   Ne nécessite pas de préparation des données (standardisation...)
+> -   Sélectionne les meilleurs variables parmi l'ensemble des prédicteurs fournis (pratique quand on a plus de variables que d'individus)
+> -   Gère de fait la non linéarité des relations et pas d'hypothèse sur la distribution des données
+> -   Facile à interpréter et fournit une représentation graphique parlante
+
+</p>
+:::
+:::
+:::
+
+::: {.fragment .fade-left}
+<p style="text-align: center; margin-top:0px; font-size: 70%;">
+
+[Mais surtout on peut étudier de la même manière des variables **quanti ou quali** (on parlera d'arbre de régression ou de classification), dans une approche mixte c'est à dire utiliser simultanément dans nos prédicteurs des **variables continues, ordinales ou qualitatives.**]{style="color:#4178bc;"}
+
+</p>
+:::
+
+## Mais quand même quelques limites.
+
+::: {.fragment .fade-left}
+<p style="font-size:70%;margin-top:0px;">
+
+1- Si la modération/intéraction est gérée naturellement les arbres ne peuvent pas étudier d'effet de médiations.
+
+</p>
+:::
+
+::: {.fragment .fade-left}
+<p style="font-size:70%;margin-top:0px;">
+
+2- Moins efficace si les relations sont ... linéaires et moins efficaces dans la prédiction que les régressions - **à conditions que toutes leurs conditions sont respectées !!!!**
+
+</p>
+:::
+
+::: {.fragment .fade-left}
+<p style="font-size:70%;margin-top:0px;">
+
+3- Pas d'extrapolation : un arbre ne prédit pas au delà de ce qui est observé dans les valeurs d'entraînement
+
+</p>
+:::
+
+::: {.fragment .fade-left}
+<p style="font-size:70%;margin-top:0px;">
+
+4- Pas d'inférence statistique : donc pas de significativité, de p-values, de coefficients, etc.
+
+</p>
+:::
+
+::: {.fragment .fade-left}
+<p style="font-size:70%;margin-top:0px;">
+
+6- Quantification difficile des effets : pas de coefficient et l'importance d'une variable dépend de sa place dans l'arbre
+
+</p>
+:::
+
+::: {.fragment .fade-left}
+<p style="font-size:70%;margin-top:0px;">
+
+7- Prédictions en escalier : Les arbres produisent des prédictions constantes par morceaux (effet "marche d'escalier"). Une régression donne des prédictions continues et lisses, plus réalistes pour beaucoup de phénomènes naturels.
+
+</p>
+:::
+
+::: {.fragment .fade-left}
+<p style="font-size:70%;margin-top:0px;">
+
+8- Sensible aux petits échantillons
+
+</p>
+:::
+
+::: {.fragment .fade-left}
+<p style="font-size:70%;margin-top:0px;">
+
+9- Risques de surapprentissage : c'est le piège majeur !
+
+</p>
+:::
+
+## En bref...
+
+::: {.fragment .fade-down}
+<p style="font-size:80%;margin-top:50px;">
+
+**L'arbre de décision apporte une solution intéressante aux défauts et limites des méthodes multivariées classiques.**
+
+</p>
+
+<p style="font-size:80%;margin-top:50px;">
+
+L'arbre de décision est un outil tout terrain qui peut être exploratoire, descriptif ou décisionnel lorsque l'on veut prédire ou expliquer des données :
+
+-   de "mauvaise qualité",
+-   ou avec des relations complexes et non linéaires,
+-   ou encore à très grande dimension,
+-   ou en mélangeant des données quanti/quali
+-   **ou tout cela à la fois !**
+
+</p>
+:::
+
+::: {.fragment .fade-up}
+<p style="text-align: center; margin-top:50px; font-size: 110%;">
+
+[**Bref un outil pratique en SHS !!!**]{style="color:#4178bc;"}
+
+</p>
+:::
+
+#  {data-background="figure/pousse.gif" data-background-size="500px"}
+
+<h2 style="text-align: center;">
+
+**Comment pousse un arbre ?**
+
+</h2>
+
+<br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br>
+
+## Un arbre de décision pousse depuis la racine :
+
+::: {.fragment .fade-up}
+<p style="font-size:80%;margin-top:20px;">
+
+1- La racine représente l'ensemble des données, il s'agit de notre point de départ.
+
+</p>
+:::
+
+::: {.fragment .fade-up}
+::: r-stack
+<img src="figure/arbrev_etape1.png" width="600" style="margin-top:15px;margin-bottom:0px"/>
+:::
+:::
+
+## Première ramification :
+
+::: {.fragment .fade-up}
+<p style="font-size:80%;margin-top:20px;">
+
+2- Une première question binaire relative à l'une des variables prédictives est posé.
+
+</p>
+:::
+
+::: {.fragment .fade-up}
+<p style="font-size:80%;margin-top:20px;">
+
+> -   C'est la réponse à cette question qui sépare notre jeu de données en deux branches / groupes.
+
+> -   La question est choisie de façon à obtenir les deux groupes les plus "purs" c'est à dire les plus homogènes en leur sein et les plus différents l'un de l'autre.
+
+</p>
+:::
+
+::: {.fragment .fade-right}
+::: r-stack
+<img src="figure/arbrev_etape2.png" width="500" style="margin-top:15px;margin-bottom:0px"/>
+:::
+:::
+
+## Un principe récursif...
+
+::: {.fragment .fade-up}
+<p style="font-size:80%;margin-top:20px;">
+
+3- Chacun des deux groupes obtenus peut à son tour être séparé en deux en choisissant à nouveau la meilleure question binaire possible à poser à l'aide du meilleur prédicteur possible.
+
+> -   La question va varier en fonction des sous-groupes d'individus.
+
+</p>
+:::
+
+::: {.fragment .fade-left}
+::: r-stack
+<img src="figure/arbrev_etape3.png" width="500" style="margin-top:15px;margin-bottom:0px"/>
+:::
+:::
+
+## Jusqu'aux feuilles !
+
+::: {.fragment .fade-up}
+<p style="font-size:80%;margin-top:20px;">
+
+4- Le processus se répète de manière récursive jusquà ce que certains critères d'arrêts soient respectés
+
+</p>
+:::
+
+::: {.fragment .fade-up}
+<p style="font-size:80%;margin-top:20px;">
+
+> -   Les groupes finaux constituent les feuilles de l'arbre.
+
+> -   Un dernier modèle simple est donnée pour chacune des feuilles terminales afin d'expliquer notre variable
+
+</p>
+:::
+
+::: {.fragment .fade-down}
+::: r-stack
+<img src="figure/arbrev_entier.png" width="400" style="margin-top:15px;margin-bottom:0px"/>
+:::
+:::
+
+## I- Comment sont choisis les questions ?
+
+::: {.fragment .fade-left}
+<p style="margin-top:20px;margin-bottom:0px;font-size:80%;">
+
+Cette question est en réalité celle de la méthode de partitionnement de l'arbre.
+
+</p>
+:::
+
+::: {.fragment .fade-right}
+
+<p style="margin-top:20px;margin-bottom:0px;font-size:80%;">
+
+Si le prédicteur est une variable quanti, la question se pose par rapport à un seuil.
+
+> -   Les individus ayant un score plus faible que ce seuil sont envoyés d'un côté et ceux ayant un score supérieur ou égale de l'autre.
+
+</p>
+
+<p style="margin-top:20px;margin-bottom:0px;font-size:80%;">
+
+Si la variable est quali, la réponse porte sur une modalité ou un sous ensemble des modalité de la variable quali.
+
+> -   Les individus possédant une modalité du sous ensemble sont envoyé d'un côté et les autres de l'autre.
+
+</p>
+
+:::
+
+## I- Comment sont choisis les questions ? 2
+
+::: {.fragment .fade-right}
+<p style="margin-top:20px;margin-bottom:0px;font-size:80%;">
+
+L'algorithme va pour ce faire tester (quasi) toutes les possibilités : tous les seuils pour toutes les variables quanti et tous les sous ensemble pour toutes les variables quali !
+
+</p>
+:::
+
+::: {.fragment .fade-right}
+<p style="margin-top:20px;margin-bottom:0px;font-size:80%;">
+
+L'objectif de l' algorithme est de chercher la meilleure question à poser à un prédicteur dont la réponse permettra de créer des sous groupes les plus homogènes possible !
+
+La question au prédicteur X qui permet de maximiser le gain d'information, c'est à dire réduire le plus possible l'erreur de prévision, est la bonne question !
+
+> -   où l'erreur de prévision = l'erreur avant la séparation - l'erreur obtenu avec les nouveaux sous-groupes.
+> -   Cet enjeu des division est associé à un paramètre fondamental qui s'appelle le CP (comlexity parameter) c'est le paramètre qui contrôle la compléxité des arbres.
+> -   C'est le seuil de gain minimal requis pour qu'une division soit conservée dans l'arbre. Il quantifie le compromis entre l'amélioration de la précision et l'augmentation de la complexité.
+
+</p>
+:::
+
+::: {.fragment .fade-right}
+<p style="margin-top:20px;margin-bottom:0px;font-size:80%;">
+
+Pour un arbre de classification le gain d'information va être évalué grêce à l'indice de Gini (le plus souvent) ou un indice d'entropie.
+
+Pour un arbre de régression c'est la variance intra groupe .
+
+</p>
+:::
+
+## II- Quel modèle pour nos groupes d'individus ?
+
+::: {.fragment .fade-right}
+<p style="margin-top:20px;margin-bottom:0px;font-size:80%;">
+
+Cette question du modèle créé pour chaque groupe d'individus renvoie simplement à comment interpréter les sous-groupes.
+
+</p>
+:::
+
+::: {.fragment .fade-right}
+<p style="margin-top:20px;margin-bottom:0px;font-size:80%;">
+
+Le coeur de l'interprétation est lié au principe même de création des arbres de décision : subdiviser nos données en sous-groupe les plus homogènes possibles en leur sein (concernant la variable étudiée) et différents les uns des autres
+
+</p>
+:::
+
+::: {.fragment .fade-right}
+<p style="margin-top:20px;margin-bottom:0px;font-size:80%;">
+
+Comme les sous-groupes d'individus sont supposées suffisamment homogènes ont fait généralement le choix d'un ajustement par une constante.
+
+</p>
+
+<p style="margin-top:20px;margin-bottom:0px;font-size:80%;">
+
+> -   Pour les arbres de régression ce sera le plus souvent la moyenne de la variable que nous cherchons à prédire.
+
+> -   Pour les arbres de classification, le mode (c'est à dire la modalité la mieux représentée) de la variable que nous cherchons à prédire.
+
+</p>
+:::
+
+#  {data-background="figure/coyote.gif" data-background-size="500px"}
+
+<h2 style="text-align: center;">
+
+**Comment arrêter la croissance de l'arbre ?**
+
+</h2>
+
+<br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br>
+
+## Quel critère d'arret ?
+
+::: {.fragment .fade-up}
+<p style="margin-top:20px;margin-bottom:0px;font-size:80%;">
+
+L'objectif du découpage optimal est à la fois de **réduire l'erreur de prédiction** tout en **évitant un surajustement** où chaque groupe d'individus est composée d'un unique individu.
+
+</p>
+:::
+
+::: {.fragment .fade-up}
+<p style="text-align: center; margin-top:30px; font-size: 90%;">
+
+[**Ou comment trouver le CP optimal ?**]{style="color:#4178bc;"}
+
+</p>
+:::
+
+::: {.fragment .fade-left}
+<p style="margin-top:20px;margin-bottom:0px;font-size:80%;">
+
+Pour se faire on peut se baser sur plusieurs critère :
+
+</p>
+:::
+
+::: {.fragment .fade-left}
+<p style="font-size:80%;margin-top:30px;">
+
+1- des critères a priori :
+
+> -   Obliger chaque groupe terminal à contenir un nombre minimal d'individus.
+> -   Fixer un nombre minimal d'observations par nœud pour lancer la prochaine division.
+> -   Controler la profondeur de l'arbre
+
+</p>
+:::
+
+::: {.fragment .fade-left}
+<p style="font-size:80%;margin-top:30px;">
+
+2- Retenir le nombre de groupes permettant de minimiser l'erreur de prédiction à l'aide de la validation croisée.
+
+[**C'est cette méthode que l'on va en général privilégier.**]{style="color:#4178bc;"}
+
+</p>
+:::
+
+## Petit apparte sur la validation croisée
+
+<p style="margin-top:20px;margin-bottom:0px;font-size:80%;">
+
+Il existe plusieurs méthodes mais la plus populaire est la validation croisée à k blocs (k-fold cross-validation en anglais)
+
+Son objectif : tester la prédiction d'un modèle
+
+</p>
+
+<p style="margin-top:20px;margin-bottom:0px;font-size:80%;">
+
+on divise notre échantillon avec d'un côté une partie qui servira pour entraîner le modèle et une autre partie sur laquelle sera testé le modèle.
+
+</p>
+
+<p style="margin-top:20px;margin-bottom:0px;font-size:80%;">
+
+On répète cette opération k fois avec des échantillons de tests de même taille mais sélectionnés aléatoirement parmi nos individus et des échantillons d'entraînement qui devront également avoir la même taille et être sélectionnés aléatoirement.
+
+</p>
+
+::: r-stack
+<img src="figure/cv.png" width="400" style="margin-top:15px;margin-bottom:0px"/>
+:::
+
+## S'arreter grâce à la validation croisé 1
+
+<p style="margin-top:20px;margin-bottom:0px;font-size:80%;">
+
+Cela se fait en plusieurs étapes :
+
+</p>
+
+::: {.fragment .fade-left}
+<p style="margin-top:20px;margin-bottom:0px;font-size:80%;">
+
+1- On produit un arbre très complexe, très grand sans se préoccuper du surajustement !
+
+L'objectif est que cet arbre premier capture le plus de pattern possible : on parle d'**arbre maximal ou complet**
+
+A partir de cette arbre l'algorithme génère une séquence d'arbres de plus en plus simples.
+
+Pour chaque valeur de CP (Complexity Parameter), on obtient un arbre élagué différent.
+
+</p>
+:::
+
+## S'arreter grâce à la validation croisé 2
+
+::: {.fragment .fade-left}
+<p style="font-size:80%;margin-top:20px;">
+
+2- On recherche par validation croisée le CP optimal:
+
+</p>
+:::
+
+::: {.fragment .fade-left}
+<p style="font-size:80%;margin-top:20px;">
+
+> -   Pour chaque CP précédemment obtenu on applique une validation croisé
+
+</p>
+:::
+
+::: {.fragment .fade-left}
+<p style="font-size:80%;margin-top:20px;">
+
+> -   Pour chaque bloc on construit l'arbre sur l'échantillon d'entrainement que l'on élague avec la valeur de CP testé
+
+</p>
+:::
+
+::: {.fragment .fade-left}
+<p style="font-size:80%;margin-top:20px;">
+
+> -   On calcul l'erreur sur notre échantillon test
+
+</p>
+:::
+
+::: {.fragment .fade-left}
+<p style="font-size:80%;margin-top:20px;">
+
+> -   On moyenne les erreurs et on obtient les erreurs en validation croisé pour chaque CP qui apparaissent sous la dénomination `xerror`
+
+</p>
+:::
+
+## S'arreter grâce à la validation croisé 3
+
+::: {.fragment .fade-left}
+<p style="font-size:80%;margin-top:50px;">
+
+3- On sélectionne le CP optimal, qui correspond à l'élagage optimal.
+
+</p>
+:::
+
+::: {.fragment .fade-left}
+<p style="font-size:80%;margin-top:10px;">
+
+Critère 1 : le CP minimal
+
+> L'erreur d'apprentissage diminue constamment jusqu'au surajustement à un 1 individu, alors que l'erreur en validation croisée diminue jusqu'à la taille optimale de l'arbre puis réaugmente. La réaugmentation indique le surajustement
+
+</p>
+
+<p style="text-align: center; margin-top:10px; font-size: 70%;">
+
+[**On choisit le `xerror` le plus faible**]{style="color:#4178bc;"}
+
+</p>
+:::
+
+::: {.fragment .fade-left}
+<p style="font-size:80%;margin-top:10px;">
+
+Critère 2 : Règle du 1-SE
+
+> On choisit le CP le plus élevé dont l'erreur reste dans un écart-type de l'erreur minimale :on obtient un arbre plus simple, donc plus interprétable, sans perdre beaucoup en performance.
+
+</p>
+
+<p style="text-align: center; margin-top:10px; font-size: 70%;">
+
+[**CP optimal = erreur de validation croisée minimum (`xerror`) + écart-type de l'erreur de validation croisée minimum (`xstd`)**]{style="color:#4178bc;"}
+
+</p>
+:::
+
+#  {data-background="figure/comegetsome.gif" data-background-size="250px"}
+
+<h2 style="text-align: center;">
+
+**Merci de votre attention et à vous de jouer !**
+
+</h2>
+
+<p class="small" style="text-align: center;">
+
+Pour accéder aux données : [**https://rzine-reviews.github.io/documentation/**](https://rzine-reviews.github.io/documentation/) <br> A l'application clic-bouton : [**https://rzine-reviews.github.io/documentation/**](https://rzine-reviews.github.io/documentation/)
+
+</p>
+
+<br> <br> <br> <br> <br> <br> <br> <br>
+
+**Contact** : [gregoire.lecampion\@cnrs.fr](mailto:gregoire.lecampion@cnrs.fr){.email} <br>**Diapositives libres** (CC BY-SA 4.0)
+
+</p>
+
+## Chargement des données
+
+::: {.panel-tabset group="intro"}
+## Consignes
+
+<br>
+
+<p style="margin-top:0px; font-size: 60%;">
+
+On commence par charger nos données. Notre objectif tenter de prédire la survie au nauffrage du Titanic !
+
+Nous utiliserons donc les données issue du package `titanic`
+
+</p>
+
+## Solutions
+
+``` r
+library(titanic)
+# Ce jeux de données correspond à : data("titanic_train"), qui est un jeu d'entraînement du package titanic
+library(dplyr)
+library(here)
+
+# On situe le dossier dans lequel se trouve nos données
+csv_path <- here("data", "titanic_data.csv")
+# Lecture du CSV dans un dataframe
+titanic_data <- read.csv(csv_path)
+
+# Nettoyage rapide
+titanic_data <- titanic_train %>%
+  mutate(
+    Survived = factor(Survived, labels = c("Non", "Oui")), # variable cible
+    Pclass = factor(Pclass),
+    Sex = factor(Sex),
+    Embarked = factor(Embarked)
+  )
+```
+
+:::
+
+## Charger les packages
+
+::: {.panel-tabset group="intro"}
+## Consignes
+
+<p style="margin-top:0px; font-size: 60%;">
+
+Il existe plusieurs package pour réaliser des arbres de décisions dans R : mais le package `rpart` est le package standard qui est même fourni nativement dans R.
+
+</p>
+
+<p class="small" style="font-size:55%;">
+
+<img src="figure/alert.png" width="30" style="margin-top:0px;margin-bottom:-7px;margin-right:8px;"/>[**Nous avons ici parlé uniquement des arbres qui fonctionne avec l'algorithme CART, qui est majoritairement utilisé, mais sachez qu'il en existe beaucoup d'autres, par exemple :**]{style="color:#4178bc;"}
+
+>-  l'algorithme CHAID : repose sur le chi² et qui a la particularité de permettre des arbres multi branches et pas seulement binaire comme avec CART
+>-  l'agorithme CTREE : repose sur des test d'indépendance conditionnels et va tenir compte de la distribution de nos variable
+>-  etc...
+</p>
+
+## Solutions
+
+``` r
+# Installer et charger les packages nécessaires
+#  install.packages("rpart")
+
+
+library(rpart)
+
+```
+:::
+
+## Produire notre premier arbre
+
+::: {.panel-tabset group="intro"}
+## Consignes
+
+<p style="margin-top:0px; font-size: 60%;">
+
+On réalise un premier arbre dont l'objectif est de comprendre la survie au naufrage du Titanic.
+
+Nous utiliserons les variables suivantes :
+
+> -   `Pclass` = classe (1ère, 2ème, 3ème)
+> -   `Sex` = sexe
+> -   `Age` = âge
+> -   `SibSp` = Nombre de frères et sœurs / conjoints à bord
+> -   `Parch` = Nombre de parents / enfants à bord
+> -   `Fare` = prix du billet
+> -   `Embarked` = port d'embarquement
+> -   `Survived` = survie au naufrage (Oui / Non).
+
+</p>
+
+## Exercices
+
+``` r
+# Indice la rédaction est très proche de celle d'un modèle de régression
+## On utilisera la fonction `rpart()` pour produire le modèle
+## Petit rappel pour avoir l'aide d'une fonction on utilise le `?` de vant la fonction `?rpart()`
+
+abc <- rpart(VD ~ VI1 + VI2 ,
+                data = ,
+                method = )
+                
+# Pour représenter graphiquement un arrbre on utilisera la fonction `plot()` associé à la fonction `text()`
+```
+
+## Solutions
+
+``` r
+## Construction d'un premier arbre basique pour expliquer la survie au naufrage :
+modele <- rpart(Survived ~ Pclass + Sex + Age + SibSp + Parch + Fare + Embarked,
+                data = titanic_data,
+                method = "class")
+                
+## Graphique basique avec les paramètre par défaut :
+plot(modele, compress=TRUE, margin = 0.1)
+text(modele, pretty = 0)
+```
+
+::: r-stack
+<img src="figure/arbre1.png" width="400" style="margin-top:15px;margin-bottom:0px"/>
+:::
+:::
+
+## Produire notre premier élagué !
+
+::: {.panel-tabset group="intro"}
+## Consignes
+
+<p style="margin-top:0px; font-size: 60%;">
+
+On produit notre arbre élagué !
+
+> -   Etape 1 : un arbre le plus profond possible
+> -   Etape 2 : On réalise notre validation croisé
+> -   Etape 3 : on identifie le bon niveau de compléxité pour élaguer l'arbre
+> -   Etpae 4 : on produit notre arbre élagué.
+
+</p>
+
+## Exercices
+
+``` r
+# Etape 1 et 2 : Tout peut se faire via la fonction `rpart()`, on pourra utiliser les argument de rpart.control
+## A savoir `cp=`, `minbucket=`, `minsplit=` et `xval`
+## On visualise notre arbre complet
+
+# On identifie le bon niveau de compléxité
+## Les scores de CP sont enregistré dasn notre modèle
+## On peut les visualiser via un graphique avec `plotcp()`...
+## Ou à l'aide d'un tableau numérique
+```
+::: columns
+::: {.column width="50%"}
+
+::: r-stack
+<img src="figure/cpplot.png" width="300" style="margin-top:15px;margin-bottom:0px"/>
+:::
+
+
+:::
+
+::: {.column width="50%"}
+
+
+::: r-stack
+<img src="figure/arbre_elague.png" width="400" style="margin-top:15px;margin-bottom:0px"/>
+:::
+
+
+:::
+
+:::
+
+
+## Solutions
+
+``` r
+# Construction d'un premier arbre basique pour expliquer la survie au naufrage :
+## je choisis ici de pousser vers un CP très faible
+## On aurait pu choisir sur les individus de nos sous groupe avec minsplit ou mminbucket
+## xval renvoie au nombre de validation croisé ici j'ai fixé ce nombre au nombre d'individu dans notre jeux de données.
+modele <- rpart(Survived ~ Pclass + Sex + Age + SibSp + Parch + Fare + Embarked,
+                data = titanic_data,
+              cp = 0.001, xval= nrow(titanic_train))
+              
+plot(modele, compress=TRUE, margin = 0.1)
+text(modele, pretty = 0)
+
+
+## Le graphique des CP
+plotcp(modele)
+
+## le tableau :
+modele$cptable
+
+#Sélection du CP minimal (critère 1)
+cp_optimal = print(modele$cptable[which.min(modele$cptable[,4]),1])
+
+arbre_titanic_opt <- prune(modele,cp=cp_optimal)
+
+plot(arbre_titanic_opt, compress=TRUE, margin = 0.1)
+text(arbre_titanic_opt, pretty = 0)
+
+
+# CP le plus élevé dans la zone d'erreur acceptable (critere2)
+xerror_min <- min(modele$cptable[,"xerror"])
+xerror_seuil <- xerror_min + modele$cptable[which.min(modele$cptable[,"xerror"]), "xstd"]
+cp_optimal <- max(modele$cptable[modele$cptable[,"xerror"] <= xerror_seuil, "CP"])
+arbre_titanic_opt <- prune(modele,cp=cp_optimal)
+
+plot(arbre_titanic_opt, compress=TRUE, margin = 0.1)
+text(arbre_titanic_opt, pretty = 0)
+```
+
+
+::::
+
+## Quelques infos en plus
+
+::: {.panel-tabset group="intro"}
+## Consignes
+
+<p style="margin-top:0px; font-size: 60%;">
+
+Obtenir des infos en plus sur notre modèle : l'importance de nos variables et une traduction plus littérale de notre arbre...
+
+</p>
+
+## Exercices
+
+``` r
+# L'importance est aussi donné dans le modèle !
+
+# `print()` et `summary()` les meilleurs amis des modèles !
+```
+
+::: r-stack
+<img src="figure/importance_var.png" width="400" style="margin-top:15px;margin-bottom:0px"/>
+:::
+
+## Solutions
+
+``` r
+# Importance des variables dans notre arbre
+importance <- arbre_titanic_opt$variable.importance
+
+# Importance normalisée en %
+importance_pct <- arbre_titanic_opt$variable.importance / sum(arbre_titanic_opt$variable.importance) * 100
+
+
+barplot(importance_pct,
+        las = 2, col = "skyblue",
+        main = "Importance des variables (Titanic)",
+        ylab = "Importance (%)")
+
+#Afficher un résumé des règles de l'arbre
+print(arbre_titanic_opt)
+
+# résumé détaillé avec coupures
+summary(arbre_titanic_opt)
+```
+:::
+
+## Rendre les arbres plus attractif
+
+::: {.panel-tabset group="intro"}
+## Consignes
+
+<p style="margin-top:0px; font-size: 60%;">
+
+De jolis arbres!
+
+Il existe des packages qui permettent de customiser la sortie classique réaliser avec `plot()`, et `text()`, notamment : `rpart.plot`, `partykit`, `rattle` ou encore `visNetwork` si on veut le rendre interactif !
+
+</p>
+
+## Solutions
+
+``` r
+
+#install.packages("rpart.plot")
+#install.packages("partykit")
+#install.packages("rattle")
+#install.packages("visNetwork")
+
+library(rpart.plot)
+library(partykit)
+library(rattle)
+library(visNetwork)
+
+
+# Avec rpart.plot
+
+rpart.plot(arbre_titanic_opt,
+            type = 2, extra = 104, fallen.leaves = TRUE,
+            box.palette = "RdBu", branch.lty = 3,
+            shadow.col = "gray",
+            main = "Style rpart.plot")
+
+# Avec partykit
+plot(as.party(arbre_titanic_opt), main = "Style partykit")
+
+
+# Avec rattle
+fancyRpartPlot(arbre_titanic_opt,
+               caption = "Arbre de décision pour prédire la survie au naufrage du Titanic",
+               palettes = c("Greens", "Blues"), # couleurs pour les classes
+               main = "Style rattle",
+               sub = "Source : jeu de données Titanic") 
+               
+# Avec visNetwork
+
+visTree(arbre_titanic_opt, nodesPopSize = TRUE, minNodeSize = 10, maxNodeSize = 30)
+
+
+```
+
+## Rpart.plot
+
+::: r-stack
+<img src="figure/rpartplot.png" width="400" style="margin-top:15px;margin-bottom:0px"/>
+:::
+
+## partykit
+
+::: r-stack
+<img src="figure/partykit.png" width="400" style="margin-top:15px;margin-bottom:0px"/>
+:::
+
+## rattle
+
+::: r-stack
+<img src="figure/rattle.png" width="400" style="margin-top:15px;margin-bottom:0px"/>
+:::
+
+## visNetwork
+
+::: r-stack
+<img src="figure/visNetwork.png" width="400" style="margin-top:15px;margin-bottom:0px"/>
+:::
+
+
+:::
+
+## Et pour prédire ?
+
+::: {.panel-tabset group="intro"}
+## Consignes
+
+<p style="margin-top:0px; font-size: 60%;">
+
+L'arbre de décision est un excellent outil de prédiction, on peut donc s'appuyer sur l'arbre réalisé pour en déduire la survie !
+
+Auriez-vous survécu ?
+
+</p>
+
+## Exercice
+
+``` r
+# On utilisera la fonction predict() qui permet de faire des prédictions sur de nouvelles données.
+## Deux éléments sont essentielles, un modèle d'arbre de décision et un jeux de données à prédire !
+```
+
+## Solutions
+
+``` r
+
+# On situe le dossier dans lequel se trouve nos données
+csv_path <- here("data", "titanic_predict.csv")
+# Lecture du CSV dans un dataframe
+titanic_predict <- read.csv(csv_path)
+
+titanic_predict <- titanic_predict %>%
+  mutate(
+  Survived = factor(Survived),
+    Pclass = factor(Pclass),
+    Sex = factor(Sex),
+    Embarked = factor(Embarked)
+  )
+
+pred <- predict(arbre_titanic_opt, titanic_predict, type = "class")
+print(pred)
+
+pred <- predict(arbre_titanic_opt, titanic_predict)
+print(pred)
+
+
+# Prédire pour vérifier la puissance de son arbre !
+
+library(caret)
+train_index <- createDataPartition(titanic_data$Survived, p = 0.8, list = FALSE)
+train_data <- titanic_data[train_index, ]
+test_data <- titanic_data[-train_index, ]
+
+# Modèle
+arbre <- rpart(Survived ~ Pclass + Sex + Age + SibSp + Parch + Fare + Embarked, 
+               data = train_data, method = "class")
+
+# Prédictions
+pred <- predict(arbre, test_data, type = "class")
+
+# Matrice de confusion
+conf_matrix <- confusionMatrix(pred, test_data$Survived)
+print(conf_matrix)
+```
+:::
+
+## Une alternative à Rpart : partykit
+
+::: {.panel-tabset group="intro"}
+## Solutions
+
+``` r
+library(partykit)
+
+party = as.party(arbre_titanic_opt)
+
+party
+
+plot(party)
+
+str(fitted(party)
+
+ prop.table(do.call("table", fitted(party)), 1)
+```
+:::
+
+## Survol très superficiel des forêts aléatoires
+
+<p style="margin-top:0px; font-size: 60%;">
+
+Les forêts aléatoires (ou random forest) sont une extension des arbres de décisions visant à être encore plus efficace sur de la prédiction.
+
+Le principe sous-jacent est plutôt simple, une multitude de modèles faibles et simples une fois combinés formeront un modèle robuste!
+
+> L'algorithme va construire une "forêt" d'arbre de décision, c'est à dire plusieurs centaines voire milliers, construite de manière aléatoire.
+
+**Finalement absolument tout est dans le nom!**
+
+## Survol très superficiel des forêts aléatoires II
+
+<p style="margin-top:0px; font-size: 60%;">
+
+Pour chaque arbre conçu dans notre modèle un échantillon aléatoire d'individus est selectionné.
+
+Pour chaque noeud des arbre (et donc construction d'un sous-groupe) on utilise qu' un sous-ensemble des variables possible.
+
+**Une des particularités dans la forêt aléatoire c'est qu'il n'y a pas "d'élagage" des arbres de décisions, c'est à dire que l'arbre pousse jusqu'au sur-ajustement, la construction de l'arbre se poursuit tant que les feuilles terminales ne sont pas trop petites.**
+
+</p>
+
+## Survol très superficiel des forêts aléatoires III
+
+<p style="margin-top:0px; font-size: 60%;">
+
+Une fois le modèle élaboré, tous les arbres de décision vont tourner sur les données qui n'auront pas servies à leur construction.
+
+La prédiction finale correspondra à la modalité prédite le plus fréquemment (dans le cas d'une variable à prédire qualitative) , ou au score moyen de tous les arbres de décisions (dans le cas d'une variable quantitative).
+
+L'importance des variables explicatives sera fournie par une moyenne, réalisée sur l'ensemble des arbres de décision, de la diminution de l'erreur sur chaque ramification des arbres régit par la variable explicative.
+
+</p>
+
+## Code forêt aléatoire
+
+::: {.panel-tabset group="intro"}
+## Consignes
+
+<p style="margin-top:0px; font-size: 60%;">
+
+Réaliser notre première forêt aléatoire !
+
+Le package de base est `randomForest`, avec sa fonction `randomForest()`.
+
+> <img src="figure/alert.png" width="30" style="margin-top:0px;margin-bottom:-7px;margin-right:8px;"/> Attention cette fonction ne supporte pas les données manquantes, il faudra les imputer ! Sinon il existe des packages alternatifs (`randomForestSRC`,`partyKit`...)
+
+La forêt aléatoire, en revanche ne produit pas de jolis visuels comme les arbres de décision. Mais on va particulièrement s'intéressé à l'importance des variables !
+
+> -   Pour mesurer l'importance l'algo permute aléatoirement la valeur d'une variable, si cette variable est importante ce changement va entrainer une baisse importante de précision du modèle !
+
+</p>
+
+## Solutions
+
+``` r
+library(randomForest)
+
+# Imputation des données manquantes
+
+titanic_complet = rfImpute(Survived ~ Pclass + Sex + Age + SibSp + Parch + Fare + Embarked, data= titanic_data)
+
+set.seed(123)
+foret <- randomForest(Survived ~ Pclass + Sex + Age + SibSp + Parch + Fare + Embarked,
+                      data = titanic_complet,
+                      ntree = 500,        # Nombre d'arbres
+                      mtry = 3,          # Nombre de variables testées à chaque division
+                      importance = TRUE, # Calcul de l'importance des variables
+                      do.trace = 50)     # Affichage du progrès tous les 50 arbres
+
+# Résumé de la forêt
+print(foret)
+
+# Prédictions forêt aléatoire
+pred_foret <- predict(foret, test_data, type = "class")
+conf_matrix_foret <- confusionMatrix(pred_foret, test_data$Survived)
+print(conf_matrix_foret)
+
+# 1. Évolution de l'erreur avec le nombre d'arbres
+plot(foret, main = "Évolution de l'erreur selon le nombre d'arbres")
+legend("topright", legend = c("OOB", "Décédé", "Survivant"), 
+       col = c("black", "red", "green"), lty = 1)
+       
+# Accéder aux valeurs ajustées :
+
+print(foret$predicted)
+
+# 2. Importance des variables
+## les variables les plus importantes sont celles qui provoquent la plus forte baisse de `MeanDecreaseAccuracy` !
+print(foret$importance)
+
+# Graphiques d'importance des variables
+varImpPlot(foret, type = 1, main = "Importance - Précision moyenne")
+varImpPlot(foret, type = 2, main = "Importance - Indice de Gini")
+
+# 3. Erreur Out-of-Bag (OOB)
+oob_error <- foret$err.rate[nrow(foret$err.rate), "OOB"]
+print(paste("\nErreur OOB finale:", round(oob_error, 4)))
+
+# OPTIMISATION DE LA FORÊT ALÉATOIRE
+# ============================================================================
+
+# Recherche du mtry optimal
+
+mtry_optimal <- tuneRF(titanic_complet[, c("Pclass", "Sex", "Age", "SibSp", "Parch", "Fare", "Embarked")],
+                       titanic_complet$Survived,
+                       stepFactor = 1.5,
+                       improve = 0.01,
+                       ntree = 300,
+                       doBest = FALSE,
+                       plot = TRUE,
+                       main = "Optimisation du paramètre mtry")
+
+# Forêt optimisée
+foret_optimisee <- randomForest(Survived ~ Pclass + Sex + Age + SibSp + Parch + Fare + Embarked,
+                               data = titanic_complet,
+                               ntree = 500,
+                               mtry = mtry_optimal[which.min(mtry_optimal[,2]), 1],
+                               importance = TRUE)
+
+print("Forêt optimisée")
+print(foret_optimisee)
+
+# Prédictions avec la forêt optimisée
+pred_foret_opt <- predict(foret_optimisee, test_data, type = "class")
+conf_matrix_foret_opt <- confusionMatrix(pred_foret_opt, test_data$Survived)
+
+
+#### Prédiction sur un nouveau jeux de donnée
+
+#Attention l'algorithme est très sensible, il faut que les nouvelles données aient exactement les même prédicteurs et que toutes les modalités des facteurs ayant entrainé le modèle soit aussi présentes dans le nouveau jeu de donnée.
+## Ainsi ce nouveau jeux de données utilisé ici à une dernière ligne factice mais avec la modalité "vide" pour la variable embarqueement, sans cette ligne impossible de réaliser la prédiction
+# En tout cas dasn le cadre de ce package
+
+# On situe le dossier dans lequel se trouve nos données
+csv_path <- here("data", "titanic_predict2.csv")
+# Lecture du CSV dans un dataframe
+titanic_predict2 <- read.csv(csv_path)
+
+titanic_predict2 <- titanic_predict2 %>%
+  mutate(
+    Pclass = factor(Pclass),
+    Sex = factor(Sex),
+    Embarked = factor(Embarked)
+  )
+
+titanic = titanic_predict2 %>% select(Pclass, Sex,Age,SibSp,Parch,Fare, Embarked)
+
+
+# 1. PRÉDICTION DES CLASSES (0 = Décédé, 1 = Survivant)
+predictions_classes <- predict(foret, titanic, type = "class")
+
+# 2. PRÉDICTION DES PROBABILITÉS
+predictions_probabilities <- predict(foret, titanic, type = "prob")
+
+```
+:::
