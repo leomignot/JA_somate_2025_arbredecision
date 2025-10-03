@@ -24,7 +24,7 @@ editor: visual
 
 <h2 style="text-align: center;">
 
-**Qu'est ce qu'un arbre de décision ?**
+**Qu'est-ce qu'un arbre de décision ?**
 
 </h2>
 
@@ -59,7 +59,7 @@ editor: visual
 ::: {.fragment .fade-left}
 <p style="font-size:80%;margin-top:50px;">
 
-4 - qui vise à **prédire ou expliquer** les valeurs prisent par une variable, que vous aurez choisie, en fonction **d'un ensemble d'autres variables** que vous aurez sélectionnées.
+4 - qui vise à **prédire ou expliquer** les valeurs prises par une variable, que vous aurez choisie, en fonction **d'un ensemble d'autres variables** que vous aurez sélectionnées.
 
 </p>
 :::
@@ -162,7 +162,7 @@ Alors qu'avec les arbres de décision :
 > -   Résite bien aux outliers (fonctionne avec des seuils)
 > -   Peu gourmand en ressource
 > -   Ne nécessite pas de préparation des données (standardisation...)
-> -   Sélectionne les meilleurs variables parmi l'ensemble des prédicteurs fournis (pratique quand on a plus de variables que d'individus)
+> -   Sélectionne les meilleures variables parmi l'ensemble des prédicteurs fournis (pratique quand on a plus de variables que d'individus)
 > -   Gère de fait la non linéarité des relations et pas d'hypothèse sur la distribution des données
 > -   Facile à interpréter et fournit une représentation graphique parlante
 
@@ -184,7 +184,7 @@ Alors qu'avec les arbres de décision :
 ::: {.fragment .fade-left}
 <p style="font-size:70%;margin-top:0px;">
 
-1- Si la modération/intéraction est gérée naturellement les arbres ne peuvent pas étudier d'effet de médiations.
+1- Si la modération/intéraction est gérée naturellement les arbres ne peuvent pas étudier d'effet de médiation.
 
 </p>
 :::
@@ -192,7 +192,7 @@ Alors qu'avec les arbres de décision :
 ::: {.fragment .fade-left}
 <p style="font-size:70%;margin-top:0px;">
 
-2- Moins efficace si les relations sont ... linéaires et moins efficaces dans la prédiction que les régressions - **à conditions que toutes leurs conditions sont respectées !!!!**
+2- Moins efficace si les relations sont ... linéaires et moins efficaces dans la prédiction que les régressions - **à condition que toutes leurs conditions sont respectées !!!!**
 
 </p>
 :::
@@ -200,7 +200,7 @@ Alors qu'avec les arbres de décision :
 ::: {.fragment .fade-left}
 <p style="font-size:70%;margin-top:0px;">
 
-3- Pas d'extrapolation : un arbre ne prédit pas au delà de ce qui est observé dans les valeurs d'entraînement
+3- Pas d'extrapolation : un arbre ne prédit pas au-delà de ce qui est observé dans les valeurs d'entraînement
 
 </p>
 :::
@@ -306,7 +306,7 @@ L'arbre de décision est un outil tout terrain qui peut être exploratoire, desc
 ::: {.fragment .fade-up}
 <p style="font-size:80%;margin-top:20px;">
 
-2- Une première question binaire relative à l'une des variables prédictives est posé.
+2- Une première question binaire relative à l'une des variables prédictives est posée.
 
 </p>
 :::
@@ -350,7 +350,7 @@ L'arbre de décision est un outil tout terrain qui peut être exploratoire, desc
 ::: {.fragment .fade-up}
 <p style="font-size:80%;margin-top:20px;">
 
-4- Le processus se répète de manière récursive jusquà ce que certains critères d'arrêts soient respectés
+4- Le processus se répète de manière récursive jusquà ce que certains critères d'arrêt soient respectés
 
 </p>
 :::
@@ -360,7 +360,7 @@ L'arbre de décision est un outil tout terrain qui peut être exploratoire, desc
 
 > -   Les groupes finaux constituent les feuilles de l'arbre.
 
-> -   Un dernier modèle simple est donnée pour chacune des feuilles terminales afin d'expliquer notre variable
+> -   Un dernier modèle simple est donné pour chacune des feuilles terminales afin d'expliquer notre variable
 
 </p>
 :::
@@ -382,7 +382,6 @@ Cette question est en réalité celle de la méthode de partitionnement de l'arb
 :::
 
 ::: {.fragment .fade-right}
-
 <p style="margin-top:20px;margin-bottom:0px;font-size:80%;">
 
 Si le prédicteur est une variable quanti, la question se pose par rapport à un seuil.
@@ -393,12 +392,11 @@ Si le prédicteur est une variable quanti, la question se pose par rapport à un
 
 <p style="margin-top:20px;margin-bottom:0px;font-size:80%;">
 
-Si la variable est quali, la réponse porte sur une modalité ou un sous ensemble des modalité de la variable quali.
+Si la variable est quali, la réponse porte sur une modalité ou un sous-ensemble des modalités de la variable quali.
 
-> -   Les individus possédant une modalité du sous ensemble sont envoyé d'un côté et les autres de l'autre.
+> -   Les individus possédant une modalité du sous-ensemble sont envoyés d'un côté et les autres de l'autre.
 
 </p>
-
 :::
 
 ## I- Comment sont choisis les questions ? 2
@@ -406,7 +404,7 @@ Si la variable est quali, la réponse porte sur une modalité ou un sous ensembl
 ::: {.fragment .fade-right}
 <p style="margin-top:20px;margin-bottom:0px;font-size:80%;">
 
-L'algorithme va pour ce faire tester (quasi) toutes les possibilités : tous les seuils pour toutes les variables quanti et tous les sous ensemble pour toutes les variables quali !
+L'algorithme va pour ce faire tester (quasi) toutes les possibilités : tous les seuils pour toutes les variables quanti et tous les sous-ensembles pour toutes les variables quali !
 
 </p>
 :::
@@ -418,8 +416,8 @@ L'objectif de l' algorithme est de chercher la meilleure question à poser à un
 
 La question au prédicteur X qui permet de maximiser le gain d'information, c'est à dire réduire le plus possible l'erreur de prévision, est la bonne question !
 
-> -   où l'erreur de prévision = l'erreur avant la séparation - l'erreur obtenu avec les nouveaux sous-groupes.
-> -   Cet enjeu des division est associé à un paramètre fondamental qui s'appelle le CP (comlexity parameter) c'est le paramètre qui contrôle la compléxité des arbres.
+> -   où l'erreur de prévision = l'erreur avant la séparation - l'erreur obtenue avec les nouveaux sous-groupes.
+> -   Cet enjeu des divisions est associé à un paramètre fondamental qui s'appelle le CP (comlexity parameter) c'est le paramètre qui contrôle la compléxité des arbres.
 > -   C'est le seuil de gain minimal requis pour qu'une division soit conservée dans l'arbre. Il quantifie le compromis entre l'amélioration de la précision et l'augmentation de la complexité.
 
 </p>
@@ -428,7 +426,7 @@ La question au prédicteur X qui permet de maximiser le gain d'information, c'es
 ::: {.fragment .fade-right}
 <p style="margin-top:20px;margin-bottom:0px;font-size:80%;">
 
-Pour un arbre de classification le gain d'information va être évalué grêce à l'indice de Gini (le plus souvent) ou un indice d'entropie.
+Pour un arbre de classification le gain d'information va être évalué grâce à l'indice de Gini (le plus souvent) ou un indice d'entropie.
 
 Pour un arbre de régression c'est la variance intra groupe .
 
@@ -456,7 +454,7 @@ Le coeur de l'interprétation est lié au principe même de création des arbres
 ::: {.fragment .fade-right}
 <p style="margin-top:20px;margin-bottom:0px;font-size:80%;">
 
-Comme les sous-groupes d'individus sont supposées suffisamment homogènes ont fait généralement le choix d'un ajustement par une constante.
+Comme les sous-groupes d'individus sont supposés suffisamment homogènes on fait généralement le choix d'un ajustement par une constante.
 
 </p>
 
@@ -479,12 +477,12 @@ Comme les sous-groupes d'individus sont supposées suffisamment homogènes ont f
 
 <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br>
 
-## Quel critère d'arret ?
+## Quel critère d'arrêt ?
 
 ::: {.fragment .fade-up}
 <p style="margin-top:20px;margin-bottom:0px;font-size:80%;">
 
-L'objectif du découpage optimal est à la fois de **réduire l'erreur de prédiction** tout en **évitant un surajustement** où chaque groupe d'individus est composée d'un unique individu.
+L'objectif du découpage optimal est à la fois de **réduire l'erreur de prédiction** tout en **évitant un surajustement** où chaque groupe d'individus est composé d'un unique individu.
 
 </p>
 :::
@@ -500,7 +498,7 @@ L'objectif du découpage optimal est à la fois de **réduire l'erreur de prédi
 ::: {.fragment .fade-left}
 <p style="margin-top:20px;margin-bottom:0px;font-size:80%;">
 
-Pour se faire on peut se baser sur plusieurs critère :
+Pour ce faire on peut se baser sur plusieurs critères :
 
 </p>
 :::
@@ -512,7 +510,7 @@ Pour se faire on peut se baser sur plusieurs critère :
 
 > -   Obliger chaque groupe terminal à contenir un nombre minimal d'individus.
 > -   Fixer un nombre minimal d'observations par nœud pour lancer la prochaine division.
-> -   Controler la profondeur de l'arbre
+> -   Contrôler la profondeur de l'arbre
 
 </p>
 :::
@@ -539,13 +537,13 @@ Son objectif : tester la prédiction d'un modèle
 
 <p style="margin-top:20px;margin-bottom:0px;font-size:80%;">
 
-on divise notre échantillon avec d'un côté une partie qui servira pour entraîner le modèle et une autre partie sur laquelle sera testé le modèle.
+on divise notre échantillon avec d'un côté une partie qui servira pour entraîner le modèle et une autre partie sur laquelle sera testée le modèle.
 
 </p>
 
 <p style="margin-top:20px;margin-bottom:0px;font-size:80%;">
 
-On répète cette opération k fois avec des échantillons de tests de même taille mais sélectionnés aléatoirement parmi nos individus et des échantillons d'entraînement qui devront également avoir la même taille et être sélectionnés aléatoirement.
+On répète cette opération k fois avec des échantillons de test de même taille mais sélectionnés aléatoirement parmi nos individus et des échantillons d'entraînement qui devront également avoir la même taille et être sélectionnés aléatoirement.
 
 </p>
 
@@ -553,7 +551,7 @@ On répète cette opération k fois avec des échantillons de tests de même tai
 <img src="figure/cv.png" width="400" style="margin-top:15px;margin-bottom:0px"/>
 :::
 
-## S'arreter grâce à la validation croisé 1
+## S'arrêter grâce à la validation croisée 1
 
 <p style="margin-top:20px;margin-bottom:0px;font-size:80%;">
 
@@ -568,19 +566,19 @@ Cela se fait en plusieurs étapes :
 
 L'objectif est que cet arbre premier capture le plus de pattern possible : on parle d'**arbre maximal ou complet**
 
-A partir de cette arbre l'algorithme génère une séquence d'arbres de plus en plus simples.
+A partir de cet arbre l'algorithme génère une séquence d'arbres de plus en plus simples.
 
 Pour chaque valeur de CP (Complexity Parameter), on obtient un arbre élagué différent.
 
 </p>
 :::
 
-## S'arreter grâce à la validation croisé 2
+## S'arrêter grâce à la validation croisée 2
 
 ::: {.fragment .fade-left}
 <p style="font-size:80%;margin-top:20px;">
 
-2- On recherche par validation croisée le CP optimal:
+2- On recherche par validation croisée le CP optimal :
 
 </p>
 :::
@@ -588,7 +586,7 @@ Pour chaque valeur de CP (Complexity Parameter), on obtient un arbre élagué di
 ::: {.fragment .fade-left}
 <p style="font-size:80%;margin-top:20px;">
 
-> -   Pour chaque CP précédemment obtenu on applique une validation croisé
+> -   Pour chaque CP précédemment obtenu on applique une validation croisée
 
 </p>
 :::
@@ -604,7 +602,7 @@ Pour chaque valeur de CP (Complexity Parameter), on obtient un arbre élagué di
 ::: {.fragment .fade-left}
 <p style="font-size:80%;margin-top:20px;">
 
-> -   On calcul l'erreur sur notre échantillon test
+> -   On calcule l'erreur sur notre échantillon test
 
 </p>
 :::
@@ -612,12 +610,12 @@ Pour chaque valeur de CP (Complexity Parameter), on obtient un arbre élagué di
 ::: {.fragment .fade-left}
 <p style="font-size:80%;margin-top:20px;">
 
-> -   On moyenne les erreurs et on obtient les erreurs en validation croisé pour chaque CP qui apparaissent sous la dénomination `xerror`
+> -   On moyenne les erreurs et on obtient les erreurs en validation croisée pour chaque CP qui apparaissent sous la dénomination `xerror`
 
 </p>
 :::
 
-## S'arreter grâce à la validation croisé 3
+## S'arreter grâce à la validation croisée 3
 
 ::: {.fragment .fade-left}
 <p style="font-size:80%;margin-top:50px;">
@@ -648,7 +646,7 @@ Critère 1 : le CP minimal
 
 Critère 2 : Règle du 1-SE
 
-> On choisit le CP le plus élevé dont l'erreur reste dans un écart-type de l'erreur minimale :on obtient un arbre plus simple, donc plus interprétable, sans perdre beaucoup en performance.
+> On choisit le CP le plus élevé dont l'erreur reste dans un écart-type de l'erreur minimale : on obtient un arbre plus simple, donc plus interprétable, sans perdre beaucoup en performance.
 
 </p>
 
@@ -690,7 +688,7 @@ Pour accéder aux données et au dépôt : [**https://github.com/LeCampionG/JA_s
 
 On commence par charger nos données. Notre objectif tenter de prédire la survie au nauffrage du Titanic !
 
-Nous utiliserons donc les données issue du package `titanic`
+Nous utiliserons donc les données issues du package `titanic`
 
 </p>
 
@@ -702,7 +700,7 @@ library(titanic)
 library(dplyr)
 library(here)
 
-# On situe le dossier dans lequel se trouve nos données
+# On situe le dossier dans lequel se trouvent nos données
 csv_path <- here("data", "titanic_data.csv")
 # Lecture du CSV dans un dataframe
 titanic_data <- read.csv(csv_path)
@@ -716,7 +714,6 @@ titanic_data <- titanic_data %>%
     Embarked = factor(Embarked)
   )
 ```
-
 :::
 
 ## Charger les packages
@@ -726,17 +723,18 @@ titanic_data <- titanic_data %>%
 
 <p style="margin-top:0px; font-size: 60%;">
 
-Il existe plusieurs package pour réaliser des arbres de décisions dans R : mais le package `rpart` est le package standard qui est même fourni nativement dans R.
+Il existe plusieurs packages pour réaliser des arbres de décision dans R : mais le package `rpart` est le package standard qui est même fourni nativement dans R.
 
 </p>
 
 <p class="small" style="font-size:55%;">
 
-<img src="figure/alert.png" width="30" style="margin-top:0px;margin-bottom:-7px;margin-right:8px;"/>[**Nous avons ici parlé uniquement des arbres qui fonctionne avec l'algorithme CART, qui est majoritairement utilisé, mais sachez qu'il en existe beaucoup d'autres, par exemple :**]{style="color:#4178bc;"}
+<img src="figure/alert.png" width="30" style="margin-top:0px;margin-bottom:-7px;margin-right:8px;"/>[**Nous avons ici parlé uniquement des arbres qui fonctionnent avec l'algorithme CART, qui est majoritairement utilisé, mais sachez qu'il en existe beaucoup d'autres, par exemple :**]{style="color:#4178bc;"}
 
->-  l'algorithme CHAID : repose sur le chi² et qui a la particularité de permettre des arbres multi branches et pas seulement binaire comme avec CART
->-  l'agorithme CTREE : repose sur des test d'indépendance conditionnels et va tenir compte de la distribution de nos variable
->-  etc...
+> -   l'algorithme CHAID : repose sur le chi² et qui a la particularité de permettre des arbres multi branches et pas seulement binaires comme avec CART
+> -   l'agorithme CTREE : repose sur des tests d'indépendance conditionnels et va tenir compte de la distribution de nos variables
+> -   etc...
+
 </p>
 
 ## Solutions
@@ -747,7 +745,6 @@ Il existe plusieurs package pour réaliser des arbres de décisions dans R : mai
 
 
 library(rpart)
-
 ```
 :::
 
@@ -778,13 +775,13 @@ Nous utiliserons les variables suivantes :
 ``` r
 # Indice la rédaction est très proche de celle d'un modèle de régression
 ## On utilisera la fonction `rpart()` pour produire le modèle
-## Petit rappel pour avoir l'aide d'une fonction on utilise le `?` de vant la fonction `?rpart()`
+## Petit rappel pour avoir l'aide d'une fonction on utilise le `?` devant la fonction `?rpart()`
 
 abc <- rpart(VD ~ VI1 + VI2 ,
                 data = ,
                 method = )
                 
-# Pour représenter graphiquement un arrbre on utilisera la fonction `plot()` associé à la fonction `text()`
+# Pour représenter graphiquement un arbre on utilisera la fonction `plot()` associée à la fonction `text()`
 ```
 
 ## Solutions
@@ -795,7 +792,7 @@ modele <- rpart(Survived ~ Pclass + Sex + Age + SibSp + Parch + Fare + Embarked,
                 data = titanic_data,
                 method = "class")
                 
-## Graphique basique avec les paramètre par défaut :
+## Graphique basique avec les paramètres par défaut :
 plot(modele, compress=TRUE, margin = 0.1)
 text(modele, pretty = 0)
 ```
@@ -815,46 +812,38 @@ text(modele, pretty = 0)
 On produit notre arbre élagué !
 
 > -   Etape 1 : un arbre le plus profond possible
-> -   Etape 2 : On réalise notre validation croisé
+> -   Etape 2 : On réalise notre validation croisée
 > -   Etape 3 : on identifie le bon niveau de compléxité pour élaguer l'arbre
-> -   Etpae 4 : on produit notre arbre élagué.
+> -   Etpae 4 : on produit notre arbre élagué
 
 </p>
 
 ## Exercices
 
 ``` r
-# Etape 1 et 2 : Tout peut se faire via la fonction `rpart()`, on pourra utiliser les argument de rpart.control
+# Etape 1 et 2 : Tout peut se faire via la fonction `rpart()`, on pourra utiliser les arguments de rpart.control
 ## A savoir `cp=`, `minbucket=`, `minsplit=` et `xval`
 ## On visualise notre arbre complet
 
 # On identifie le bon niveau de compléxité
-## Les scores de CP sont enregistré dasn notre modèle
+## Les scores de CP sont enregistrés dans notre modèle
 ## On peut les visualiser via un graphique avec `plotcp()`...
 ## Ou à l'aide d'un tableau numérique
 ```
+
 ::: columns
 ::: {.column width="50%"}
-
 ::: r-stack
 <img src="figure/cpplot.png" width="300" style="margin-top:15px;margin-bottom:0px"/>
 :::
-
-
 :::
 
 ::: {.column width="50%"}
-
-
 ::: r-stack
 <img src="figure/arbre_elague.png" width="400" style="margin-top:15px;margin-bottom:0px"/>
 :::
-
-
 :::
-
 :::
-
 
 ## Solutions
 
@@ -862,7 +851,7 @@ On produit notre arbre élagué !
 # Construction d'un premier arbre basique pour expliquer la survie au naufrage :
 ## je choisis ici de pousser vers un CP très faible
 ## On aurait pu choisir sur les individus de nos sous groupe avec minsplit ou mminbucket
-## xval renvoie au nombre de validation croisé ici j'ai fixé ce nombre au nombre d'individu dans notre jeux de données.
+## xval renvoie au nombre de validations croisées, ici j'ai fixé ce nombre au nombre d'individus dans notre jeux de données.
 modele <- rpart(Survived ~ Pclass + Sex + Age + SibSp + Parch + Fare + Embarked,
                 data = titanic_data,
               cp = 0.001, xval= nrow(titanic_train))
@@ -886,7 +875,7 @@ plot(arbre_titanic_opt, compress=TRUE, margin = 0.1)
 text(arbre_titanic_opt, pretty = 0)
 
 
-# CP le plus élevé dans la zone d'erreur acceptable (critere2)
+# CP le plus élevé dans la zone d'erreur acceptable (critère2)
 xerror_min <- min(modele$cptable[,"xerror"])
 xerror_seuil <- xerror_min + modele$cptable[which.min(modele$cptable[,"xerror"]), "xstd"]
 cp_optimal <- max(modele$cptable[modele$cptable[,"xerror"] <= xerror_seuil, "CP"])
@@ -895,9 +884,7 @@ arbre_titanic_opt <- prune(modele,cp=cp_optimal)
 plot(arbre_titanic_opt, compress=TRUE, margin = 0.1)
 text(arbre_titanic_opt, pretty = 0)
 ```
-
-
-::::
+:::
 
 ## Quelques infos en plus
 
@@ -913,7 +900,7 @@ Obtenir des infos en plus sur notre modèle : l'importance de nos variables et u
 ## Exercices
 
 ``` r
-# L'importance est aussi donné dans le modèle !
+# L'importance est aussi donnée dans le modèle !
 
 # `print()` et `summary()` les meilleurs amis des modèles !
 ```
@@ -945,7 +932,7 @@ summary(arbre_titanic_opt)
 ```
 :::
 
-## Rendre les arbres plus attractif
+## Rendre les arbres plus attractifs
 
 ::: {.panel-tabset group="intro"}
 ## Consignes
@@ -954,7 +941,7 @@ summary(arbre_titanic_opt)
 
 De jolis arbres!
 
-Il existe des packages qui permettent de customiser la sortie classique réaliser avec `plot()`, et `text()`, notamment : `rpart.plot`, `partykit`, `rattle` ou encore `visNetwork` si on veut le rendre interactif !
+Il existe des packages qui permettent de customiser la sortie classique réalisée avec `plot()`, et `text()`, notamment : `rpart.plot`, `partykit`, `rattle` ou encore `visNetwork` si on veut le rendre interactif !
 
 </p>
 
@@ -995,8 +982,6 @@ fancyRpartPlot(arbre_titanic_opt,
 # Avec visNetwork
 
 visTree(arbre_titanic_opt, nodesPopSize = TRUE, minNodeSize = 10, maxNodeSize = 30)
-
-
 ```
 
 ## Rpart.plot
@@ -1022,8 +1007,6 @@ visTree(arbre_titanic_opt, nodesPopSize = TRUE, minNodeSize = 10, maxNodeSize = 
 ::: r-stack
 <img src="figure/visNetwork.png" width="400" style="margin-top:15px;margin-bottom:0px"/>
 :::
-
-
 :::
 
 ## Et pour prédire ?
@@ -1043,7 +1026,7 @@ Auriez-vous survécu ?
 
 ``` r
 # On utilisera la fonction predict() qui permet de faire des prédictions sur de nouvelles données.
-## Deux éléments sont essentielles, un modèle d'arbre de décision et un jeux de données à prédire !
+## Deux éléments sont essentiels, un modèle d'arbre de décision et un jeux de données à prédire !
 ```
 
 ## Solutions
@@ -1104,7 +1087,7 @@ party
 
 plot(party)
 
-str(fitted(party)
+str(fitted(party))
 
  prop.table(do.call("table", fitted(party)), 1)
 ```
@@ -1114,9 +1097,9 @@ str(fitted(party)
 
 <p style="margin-top:0px; font-size: 60%;">
 
-Les forêts aléatoires (ou random forest) sont une extension des arbres de décisions visant à être encore plus efficace sur de la prédiction.
+Les forêts aléatoires (ou random forest) sont une extension des arbres de décision visant à être encore plus efficaces sur de la prédiction.
 
-Le principe sous-jacent est plutôt simple, une multitude de modèles faibles et simples une fois combinés formeront un modèle robuste!
+Le principe sous-jacent est plutôt simple, une multitude de modèles une fois combinés formeront un modèle robuste!
 
 > L'algorithme va construire une "forêt" d'arbre de décision, c'est à dire plusieurs centaines voire milliers, construite de manière aléatoire.
 
@@ -1128,9 +1111,9 @@ Le principe sous-jacent est plutôt simple, une multitude de modèles faibles et
 
 Pour chaque arbre conçu dans notre modèle un échantillon aléatoire d'individus est selectionné.
 
-Pour chaque noeud des arbre (et donc construction d'un sous-groupe) on utilise qu' un sous-ensemble des variables possible.
+Pour chaque noeud des arbres (et donc construction d'un sous-groupe) on n'utilise qu'un sous-ensemble des variables possible.
 
-**Une des particularités dans la forêt aléatoire c'est qu'il n'y a pas "d'élagage" des arbres de décisions, c'est à dire que l'arbre pousse jusqu'au sur-ajustement, la construction de l'arbre se poursuit tant que les feuilles terminales ne sont pas trop petites.**
+**Une des particularités dans la forêt aléatoire c'est qu'il n'y a pas "d'élagage" des arbres de décision, c'est à dire que l'arbre pousse jusqu'au sur-ajustement, la construction de l'arbre se poursuit tant que les feuilles terminales ne sont pas trop petites.**
 
 </p>
 
@@ -1138,11 +1121,11 @@ Pour chaque noeud des arbre (et donc construction d'un sous-groupe) on utilise q
 
 <p style="margin-top:0px; font-size: 60%;">
 
-Une fois le modèle élaboré, tous les arbres de décision vont tourner sur les données qui n'auront pas servies à leur construction.
+Une fois le modèle élaboré, tous les arbres de décision vont tourner sur les données qui n'auront pas servi à leur construction.
 
-La prédiction finale correspondra à la modalité prédite le plus fréquemment (dans le cas d'une variable à prédire qualitative) , ou au score moyen de tous les arbres de décisions (dans le cas d'une variable quantitative).
+La prédiction finale correspondra à la modalité prédite le plus fréquemment (dans le cas d'une variable à prédire qualitative), ou au score moyen de tous les arbres de décision (dans le cas d'une variable quantitative).
 
-L'importance des variables explicatives sera fournie par une moyenne, réalisée sur l'ensemble des arbres de décision, de la diminution de l'erreur sur chaque ramification des arbres régit par la variable explicative.
+L'importance des variables explicatives sera fournie par une moyenne, réalisée sur l'ensemble des arbres de décision, de la diminution de l'erreur sur chaque ramification des arbres régie par la variable explicative.
 
 </p>
 
@@ -1159,7 +1142,7 @@ Le package de base est `randomForest`, avec sa fonction `randomForest()`.
 
 > <img src="figure/alert.png" width="30" style="margin-top:0px;margin-bottom:-7px;margin-right:8px;"/> Attention cette fonction ne supporte pas les données manquantes, il faudra les imputer ! Sinon il existe des packages alternatifs (`randomForestSRC`,`partyKit`...)
 
-La forêt aléatoire, en revanche ne produit pas de jolis visuels comme les arbres de décision. Mais on va particulièrement s'intéressé à l'importance des variables !
+La forêt aléatoire, en revanche ne produit pas de jolis visuels comme les arbres de décision. Mais on va particulièrement s'intéresser à l'importance des variables !
 
 > -   Pour mesurer l'importance l'algo permute aléatoirement la valeur d'une variable, si cette variable est importante ce changement va entrainer une baisse importante de précision du modèle !
 
@@ -1208,7 +1191,7 @@ varImpPlot(foret, type = 1, main = "Importance - Précision moyenne")
 varImpPlot(foret, type = 2, main = "Importance - Indice de Gini")
 
 # 3. Erreur Out-of-Bag (OOB) (estimation de l'erreur de prédiction)
-# c'est un indicateur de performance de notre forêt aléatoire, une sorte de validation croisé mais calculé sur l'apprentissage sasn un jeux de données extérieur. 
+# c'est un indicateur de performance de notre forêt aléatoire, une sorte de validation croisée mais calculé sur l'apprentissage sasn un jeux de données extérieur. 
 oob_error <- foret$err.rate[nrow(foret$err.rate), "OOB"]
 print(paste("\nErreur OOB finale:", round(oob_error, 4)))
 
@@ -1241,11 +1224,11 @@ pred_foret_opt <- predict(foret_optimisee, test_data, type = "class")
 conf_matrix_foret_opt <- confusionMatrix(pred_foret_opt, test_data$Survived)
 
 
-#### Prédiction sur un nouveau jeux de donnée
+#### Prédiction sur un nouveau jeux de données
 
-#Attention l'algorithme est très sensible, il faut que les nouvelles données aient exactement les même prédicteurs et que toutes les modalités des facteurs ayant entrainé le modèle soit aussi présentes dans le nouveau jeu de donnée.
-## Ainsi ce nouveau jeux de données utilisé ici à une dernière ligne factice mais avec la modalité "vide" pour la variable embarqueement, sans cette ligne impossible de réaliser la prédiction
-# En tout cas dasn le cadre de ce package
+# Attention l'algorithme est très sensible, il faut que les nouvelles données aient exactement les mêmes prédicteurs et que toutes les modalités des facteurs ayant entrainé le modèle soient aussi présentes dans le nouveau jeu de données.
+# Ainsi ce nouveau jeux de données utilisé ici à une dernière ligne factice mais avec la modalité "vide" pour la variable embarquement, sans cette ligne impossible de réaliser la prédiction
+# En tout cas dans le cadre de ce package
 
 # On situe le dossier dans lequel se trouve nos données
 csv_path <- here("data", "titanic_predict2.csv")
@@ -1267,6 +1250,5 @@ predictions_classes <- predict(foret, titanic, type = "class")
 
 # 2. PRÉDICTION DES PROBABILITÉS
 predictions_probabilities <- predict(foret, titanic, type = "prob")
-
 ```
 :::
